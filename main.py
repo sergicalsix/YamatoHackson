@@ -1,6 +1,11 @@
 import streamlit as st
+from animation import *
 
-st.title("配送最適化アプリver1")
+st.title("超スケジューリングくん")
+
+
+#password = st.text_input('パスワードを入力してください')
+
 
 #選択肢の作成
 area_option = st.radio(
@@ -11,22 +16,33 @@ user_option = st.radio(
     "属性を選択(氏名に変える?)",
     ('運転手','管理者')
 )
+
+if user_option == '運転手':
+    name = st.radio(
+        "氏名",
+        ('okubo','shibuya','tyo')
+    )
+
 st.markdown(
 """
 -----
 """
 )
+
 go = st.button('実行!!')
 
 # ここは変える、
 if go == True :
-    st.image('test.gif')
+    #st.image('test.gif')
 
-    if area_option == '東京':
-        st.write("hoge")
-
+    if user_option == '運転手':
+        fig = my_gantt_chart()
+        st.plotly_chart(fig)
     else:
-        st.write('まだ！')
+        fig = my_CO2_chart()
+        st.plotly_chart(fig)
+
+        st.write("さらにトラックのアニメーションが入ります！")
 
 
 st.markdown(
