@@ -13,7 +13,7 @@ def my_gantt_chart(name:str , area_option = "Tokyo") -> object:
 
     if area_option == "Tokyo":
         move_seconds:list = [[9, 11, 5, 11], [9, 12, 8, 11, 6], [8, 5, 6, 8, 3, 9, 3], [6, 9, 5, 11, 8], [6, 3, 5, 6]]
-    name_to_num:dict = {'okubo':0,'shibuya':1,'tyo':2,'saito':3,'takahashi':4}
+    name_to_num:dict = {'大久保':0,'Chou':1,'渋谷':2,'渡辺':3,'高橋':4}
     move_second:list = move_seconds[ name_to_num[name] ]  #ex. [9, 11, 5, 11]
     #st.write(task)
 
