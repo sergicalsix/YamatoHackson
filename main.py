@@ -20,7 +20,7 @@ user_option = st.radio(
 if user_option == '運転手':
     name = st.radio(
         "氏名",
-        ('okubo','shibuya','tyo')
+        ('okubo','shibuya','tyo','saito','takahashi')
     )
 
 st.markdown(
@@ -29,20 +29,27 @@ st.markdown(
 """
 )
 
-go = st.button('実行!!')
+#area_option
 
+
+go = st.button('実行!!')
 # ここは変える、
 if go == True :
     #st.image('test.gif')
 
     if user_option == '運転手':
-        fig = my_gantt_chart()
+        #ガントチャートの描画
+        fig = my_gantt_chart(name = name)
         st.plotly_chart(fig)
+        #地図の描画
+        fig = my_task_view(name = name)
+        st.pydeck_chart(fig)
+
     else:
         fig = my_CO2_chart()
         st.plotly_chart(fig)
-
-        st.write("さらにトラックのアニメーションが入ります！")
+        fig = my_task_view(name = name)
+        st.pydeck_chart(fig)
 
 
 st.markdown(
