@@ -49,6 +49,7 @@ parso==0.8.2
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==8.3.1
+plotly==5.2.2
 prometheus-client==0.11.0
 prompt-toolkit==3.0.20
 protobuf==3.17.3
@@ -67,6 +68,7 @@ Send2Trash==1.8.0
 six==1.16.0
 smmap==4.0.0
 streamlit==0.87.0
+tenacity==8.0.1
 terminado==0.11.1
 testpath==0.5.0
 toml==0.10.2
@@ -77,6 +79,7 @@ typing-extensions==3.10.0.0
 tzlocal==3.0
 urllib3==1.26.6
 validators==0.18.2
+watchdog==2.1.5
 wcwidth==0.2.5
 webencodings==0.5.1
 widgetsnbextension==3.5.1
