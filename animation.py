@@ -10,6 +10,7 @@ import datetime
 import streamlit as st #テスト用
 
 #df = pd.read_csv('data/results.csv')
+
 def my_gantt_chart(name:str = "大久保" , area_option = "Tokyo") -> object:
 
     if area_option == "Tokyo":
@@ -137,8 +138,6 @@ def my_CO2_chart() -> object:
     fig = px.bar(df, x=x, y=y,
              hover_data=[y], color=y, width = 800,
              height=400, )
-
-
 
     #trace
     #trace0 = go.Bar(x=n_customer,y=energy,name="Past", color='energy')
