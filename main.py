@@ -20,12 +20,13 @@ st.markdown('<i class="material-icons">face</i>', unsafe_allow_html=True)
 
 
 #選択肢の作成
-area_option = st.sidebar.radio(
-     "配達場所を選択(今後入力に変える？)",
-    ('東京','大阪')
-)
+#area_option = st.sidebar.radio(
+#     "配達場所を選択(今後入力に変える？)",
+#    ('東京','大阪')
+#)
+area_option = "Tokyo"
 user_option = st.sidebar.radio(
-    "属性を選択(氏名に変える?)",
+    "属性を選択してください",
     ('運転手','管理者')
 )
 
@@ -43,6 +44,7 @@ st.markdown(
 
 #area_option
 
+st.sidebar.markdown("""-----""")
 
 go = st.sidebar.checkbox('実行!!')
 # ここは変える、
@@ -75,8 +77,7 @@ if go == True :
         st.pydeck_chart(fig)
 
         st.write("配送アニメーション")
-        st.image(all.gif)
-
+        st.image('all.gif')
 
 
 st.markdown(
