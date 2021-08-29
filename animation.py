@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import pydeck as pdk
@@ -22,7 +23,7 @@ def my_gantt_chart(name:str = "大久保" , area_option = "Tokyo") -> object:
     now_min:int = 0
 
 
-    for i in range(len(move_second)):
+    for i in range(len(move_second) -1):
         task_name:str = 'Task' + str(i+1)
         now_min += move_second[i]
         end = datetime.datetime(2021,8,29,9,now_min)
@@ -118,23 +119,32 @@ def my_task_view(name:str = "大久保", area_option = "Tokyo") -> object:
 
 def my_CO2_chart() -> object:
     df = pd.DataFrame()
+    #もらったデータ
+    n_customer = [    0,     1,     2,     3,     4,     5,     6,     7,     8,     9,    10,    11,    12,    13,    14,    15,    16,    17,    18,    19,    20]
+    energy =    [150.5, 150.5, 150.5, 150.5, 150.5, 150.5, 150.5, 150.5, 156.5, 156.5, 162.5, 164.0, 164.0, 164.0, 164.0, 171.5, 174.5, 176.0, 185.0, 186.5, 189.5]
 
-    df['time'] = [str(i+6) + ":00" for i in range(10)]
-    df['a'] = [i*3 for i  in range(10)]
-    df['b'] = [i*2 for i  in range(10)]
-    x = df['time']
-    y0 = df['a']
-    y1 = df['b']
+    energy = np.array(energy)
+    energy /= min(energy)
+    x: str = '時間を指定した顧客の数'
+    y: str = 'CO2の排出率の比率'
+    df[x] = n_customer
+    df[y] = energy
+    fig = px.bar(df, x=x, y=y,
+             hover_data=[y], color=y,
+             height=500)
+
+
+
     #trace
-    trace0 = go.Bar(x=x,y=y0,name="Past")
-    trace1 = go.Bar(x=x,y=y1,name="Ours")
-    traces = [trace0,trace1]
+    #trace0 = go.Bar(x=n_customer,y=energy,name="Past", color='energy')
+    #trace1 = go.Bar(x=x,y=y1,name="Ours")
+    #traces = [trace0]
     #layout
-    layout = go.Layout(title=(dict(text="CO2 排出量",x=0.5)),
-                  xaxis=(dict(title="time")),
-                  yaxis=(dict(title="cost")))
+    #layout = go.Layout(title=(dict(text="CO2 排出量",x=0.5)),
+    #                  xaxis=(dict(title="時間を指定した顧客の数")),
+    #              yaxis=(dict(title="CO2 消費量の比率")))
     #figure
-    fig = go.Figure(data=traces,layout=layout)
+    #fig = go.Figure(data=traces,layout=layout)
 
     return fig
 
@@ -245,5 +255,32 @@ def my_make_frame(total_frame = 60,area_option = "Tokyo") -> object:
     df = pd.DataFrame()
     df["経度"] = pos_x
     df["緯度"] = pos_y
+
+    return df
+
+
+def my_driver_place(name = "大久保",area_option = "Tokyo") -> object:
+    """
+    アニメーション用のフレームを作る.
+    60分で、移動時間の最小値が3だがプログラムの都合上
+    1フレーム1分とする
+
+    out: 5(トラック)×60のデータフレーム <- グラフを描画しやすいから
+    """
+    if area_option == "Tokyo":
+        visited_places = {1: [0, 2, 5, 16, 0], 2: [0, 3, 6, 11, 17, 0], 3: [0, 4, 1, 7, 14, 15, 19, 0], 4: [0, 8, 13, 12, 18, 0], 5: [0, 10, 9, 20, 0]}
+        name_to_num:dict = {'大久保':0,'Chou':1,'渋谷':2,'渡辺':3,'高橋':4}
+        x,y = 35.66062359622924,139.704968885932
+
+    #if name in name_to_num:
+    key_ = name_to_num[name]
+    visited_place:list = visited_places[key_ + 1]
+
+    df = pd.read_csv('data/guests_tokyo.csv')
+
+    df = df[df["ゲスト番号"].isin(visited_place) ]
+
+    df = df.drop(['ゲスト番号','希望時間帯'],axis = 1)
+
 
     return df
