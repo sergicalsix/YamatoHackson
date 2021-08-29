@@ -7,7 +7,7 @@ st.set_page_config(
    page_icon=":cat:",
  )
 
-st.title("超スケジューリングくん　(東京エリア)")
+st.title("超スケジューリングくん　(渋谷駅周辺)")
 st.write('<style>h1 {color: green;}</style>', unsafe_allow_html=True)
 
 st.markdown('<style>' + open('icons.css').read() + '</style>', unsafe_allow_html=True)
@@ -26,7 +26,7 @@ st.image('img/icons/sch.png')
 #     "配達場所を選択(今後入力に変える？)",
 #    ('東京','大阪')
 #)
-area_option = "東京"
+area_option = "渋谷駅"
 
 st.sidebar.image('img/icons/flag.png')
 user_option = st.sidebar.radio(
@@ -85,7 +85,7 @@ if go == True :
 
     else:
 
-        st.info(f"本日の{area_option}エリアの配達")
+        st.info(f"本日の{area_option}周辺の配達")
         fig = my_task_view(name = "all")
         st.pydeck_chart(fig)
 
