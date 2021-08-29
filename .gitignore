@@ -3,3 +3,4 @@ venv
 __pyca*
 mytest*
 demo*
+.DS_Store
