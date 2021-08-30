@@ -11,7 +11,7 @@
 https://share.streamlit.io/sergicalsix/yamatohackson/main.py
 
 ## 概観
-![](overview.pdf)
+![](overview.png)
 
 
 ---
