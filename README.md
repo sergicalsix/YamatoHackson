@@ -22,7 +22,7 @@ https://share.streamlit.io/sergicalsix/yamatohackson/main.py
 - 顧客の時間指定の人数を変化させた時のCO2排出量のシミュレーション結果
 - 配送map(mapbox)
 
-## 使用技術(フロント)
+## 使用技術(フロントエンド)
 - streamlit(フレーム)
 - plotly(ガントチャート、棒グラフの作成)
 - pydeck(地図の描画)
