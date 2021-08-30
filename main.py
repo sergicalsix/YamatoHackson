@@ -10,17 +10,11 @@ st.set_page_config(
 st.title("超スケジューリングくん　(渋谷駅周辺)")
 st.write('<style>h1 {color: green;}</style>', unsafe_allow_html=True)
 
-st.markdown('<style>' + open('icons.css').read() + '</style>', unsafe_allow_html=True)
+#st.markdown('<style>' + open('icons.css').read() + '</style>', unsafe_allow_html=True)
 #st.markdown('<i class="material-icons">face</i>', unsafe_allow_html=True)
-
-
 st.image('img/icons/sch.png')
-
 #st.image('<i class="material-icons"> ":face:" </i>', unsafe_allow_html=True)
-
 #password = st.text_input('パスワードを入力してください')
-
-
 #選択肢の作成
 #area_option = st.sidebar.radio(
 #     "配達場所を選択(今後入力に変える？)",
@@ -40,11 +34,7 @@ if user_option == 'セールスドライバー':
         ('大久保','Chou','渋谷','渡辺','高橋')
     )
 
-st.markdown(
-"""
------
-"""
-)
+st.markdown("""-----""")
 
 #area_option
 
@@ -56,8 +46,6 @@ if go == True :
     if user_option == 'セールスドライバー':
         #ガントチャートの描画
         st.warning(f'本日の{name}さんの配達予定です！！')
-#st.info('Info message')
-#st.success('Success message')
         fig = my_gantt_chart(name = name)
         st.plotly_chart(fig)
         #地図の描画
@@ -92,6 +80,7 @@ if go == True :
         st.success("配送アニメーション")
         st.image('all.gif')
 
+    
         #df = pd.read_csv('data/guests_tokyo.csv')
         #df = df.drop(['ゲスト番号','希望時間帯'],axis = 1)
         #st.dataframe(df.head(20), width = 1000000)
@@ -101,8 +90,4 @@ if go == True :
         st.plotly_chart(fig)
 
 
-st.markdown(
-"""
------
-"""
-)
+st.markdown("""-----""")
